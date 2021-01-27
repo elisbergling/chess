@@ -3,21 +3,12 @@
     margin: 0;
 }
 
-header {
-    height: 50px;
-    background-color: cadetblue;
-}
-
-footer {
-    height: 50px;
-    background-color: coral;
-}
-
 #board {
     display: grid;
     width: 800px;
     height: 800px;
-    border: 10px solid brown;
+    border: 10px solid lightsalmon;
+    border-radius: 10px;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
 }
@@ -27,12 +18,38 @@ footer {
     width: 100px;
 }
 
+#board div:hover {
+    height: 90px;
+    width: 90px;
+    border: 5px solid lightsteelblue;
+}
+
 .white {
     color: white;
     background-color: white;
 }
 
 .black {
-    color:black;
+    color: black;
     background-color: black;
+}
+
+button {
+    color: black;
+    background-color: aquamarine;
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+}
+
+body {
+    background-color: thistle;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

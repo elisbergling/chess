@@ -8,12 +8,4 @@ class Piece {
     get moves() {
         return this.moves();
     }
-  
-    get area() {
-      return this.calcArea();
-    }
-  
-    calcArea() {
-      return this.height * this.width;
-    }
   }
