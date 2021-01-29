@@ -1,8 +1,8 @@
-class Moves {
+export default class Moves {
     static king(position) {
         let list = [];
-        for (i = -1; i <= 1; i++) {
-            for (j = -1; j <= 1; j++) {
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
                 if (i != 0 && j != 0) {
                     list.push(Position(position.x + i, position.y + j));
                 }
@@ -17,7 +17,7 @@ class Moves {
 
     static rook(position) {
         let list = [];
-        for (i = 1; i <= 8; i++) {
+        for (let i = 1; i <= 8; i++) {
             list.push(Position(position.x, i));
             list.push(Position(i, position.y));
         }
@@ -26,8 +26,8 @@ class Moves {
 
     static bishop(position) {
         let list = [];
-        for (i = -8; i <= 8; i++) {
-            for (j = -8; i <= 8; i++) {
+        for (let i = -8; i <= 8; i++) {
+            for (let j = -8; i <= 8; i++) {
                 if (i == j) {
                     list.push(Position(position.x + i, position.y + j));
                 }
@@ -38,8 +38,8 @@ class Moves {
 
     static knight() {
         let list = [];
-        for (i = -2; i <= 2; i++) {
-            for (j = -2; i <= 2; i++) {
+        for (let i = -2; i <= 2; i++) {
+            for (let j = -2; i <= 2; i++) {
                 if (i != j && i != -j && i != 0 && j != 0) {
                     list.push(Position(position.x + i, position.y + j));
                 }

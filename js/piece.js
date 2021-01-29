@@ -1,4 +1,4 @@
-class Piece {
+export default class Piece {
     constructor(position, img, moves) {
       this.position = position;
       this.img  = img;
