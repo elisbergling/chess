@@ -1,5 +1,8 @@
+import {Piece} from "./piece.js";
+import {Position} from "./position.js";
+import { KING, QUEEN, ROOK, KNIGHT, BISHOP, PAWN } from "./strings.js";
 
-
+document.querySelector("#startGame").addEventListener("click", startGame);
 
 function startGame() {
     generateSquares();
@@ -8,25 +11,23 @@ function startGame() {
 
 function generateSquares() {
     document.querySelector("main").innerHTML = `<div id="board"></div>`;
-    for (i = 0; i < 8; i++) {
-        for (j = 0; j < 8; j++) {
+    for (let i = 1; i <= 8; i++) {
+        for (let j = 1; j <= 8; j++) {
             let square = (i + j) % 2 == 0 ?
-                `<div class="white"></div>` : `<div class="black"></div>`
+                `<div class="white" id=${i, j}></div>` : `<div class="black" id=${i, j}></div>`
             document.querySelector("#board").innerHTML += square;
         }
     }
-    document.querySelector("button").outerHTML = `<div></div>`;
 }
 
 let pieces = [];
 
 function generatePieces() {
     for (let i = 1; i <= 8; i++) {
-        pieces.push(Piece(Position(i, 7), ''), Moves.pawn(Position(i, 7), false));
-        pieces.push(Piece(Position(i, 2), ''), Moves.pawn(Position(i, 2), true));
+        pieces.push(new Piece(new Position(i, 7), "", PAWN, false));
+        pieces.push(new Piece(new Position(i, 2), "", PAWN, true));
     }
-    document.querySelector("main").innerHTML += `<div id="pieces"></div>`;
     pieces.forEach(piece => {
-        document.querySelector("#pieces").innerHTML += `<div class="piece"></div>`; // ändra
+        document.getElementById(`${piece.position.x, piece.position.y}`).innerHTML = `<img src="${piece.img}" alt="En pjäs">`;
     });
 }

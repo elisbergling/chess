@@ -1,10 +1,12 @@
-export default class Moves {
+import {Position} from "./position.js";
+
+export class Moves {
     static king(position) {
         let list = [];
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
                 if (i != 0 && j != 0) {
-                    list.push(Position(position.x + i, position.y + j));
+                    list.push(new Position(position.x + i, position.y + j));
                 }
             }
         }
@@ -18,20 +20,8 @@ export default class Moves {
     static rook(position) {
         let list = [];
         for (let i = 1; i <= 8; i++) {
-            list.push(Position(position.x, i));
-            list.push(Position(i, position.y));
-        }
-        return list;
-    }
-
-    static bishop(position) {
-        let list = [];
-        for (let i = -8; i <= 8; i++) {
-            for (let j = -8; i <= 8; i++) {
-                if (i == j) {
-                    list.push(Position(position.x + i, position.y + j));
-                }
-            }
+            list.push(new Position(position.x, i));
+            list.push(new Position(i, position.y));
         }
         return list;
     }
@@ -41,19 +31,33 @@ export default class Moves {
         for (let i = -2; i <= 2; i++) {
             for (let j = -2; i <= 2; i++) {
                 if (i != j && i != -j && i != 0 && j != 0) {
-                    list.push(Position(position.x + i, position.y + j));
+                    list.push(new Position(position.x + i, position.y + j));
                 }
             }
         }
         return list;
     }
 
+    static bishop(position) {
+        let list = [];
+        for (let i = -8; i <= 8; i++) {
+            for (let j = -8; i <= 8; i++) {
+                if (i == j) {
+                    list.push(new Position(position.x + i, position.y + j));
+                }
+            }
+        }
+        return list;
+    }
+
+    
+
     static pawn(position, isWhite) {
         let list = [];
         if (isWhite) {
-            list.push(Position(position.x, position.y + 1));
+            list.push(new Position(position.x, position.y + 1));
         } else {
-            list.push(Position(position.x, position.y - 1));
+            list.push(new Position(position.x, position.y - 1));
         }
         return list;
     }

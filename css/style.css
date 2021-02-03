@@ -34,13 +34,17 @@
     background-color: black;
 }
 
-button {
+#startGame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: black;
     background-color: aquamarine;
     width: 200px;
     height: 50px;
     border: none;
     border-radius: 10px;
+    text-align: center;
 }
 
 body {

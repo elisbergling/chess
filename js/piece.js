@@ -1,11 +1,10 @@
-export default class Piece {
-    constructor(position, img, moves) {
-      this.position = position;
-      this.img  = img;
-      this.moves = moves;
-    }
+import {switchMoves} from "./switch.js";
 
-    get moves() {
-        return this.moves();
-    }
+export class Piece {
+  constructor(position, img, piece, isWhite) {
+    console.log(position.x, position.y);
+    this.position = position;
+    this.img = img;
+    this.moves = switchMoves(piece, position, isWhite);
   }
+}
