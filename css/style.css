@@ -7,7 +7,7 @@
     display: grid;
     width: 800px;
     height: 800px;
-    border: 10px solid lightsalmon;
+    border: 10px solid #956843;
     border-radius: 10px;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
@@ -21,17 +21,21 @@
 #board div:hover {
     height: 90px;
     width: 90px;
-    border: 5px solid lightsteelblue;
+    border: 5px solid #956843;
 }
 
 .white {
-    color: white;
-    background-color: white;
+    background-color: #F0D9B5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .black {
-    color: black;
-    background-color: black;
+    background-color: #B58863;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #startGame {

@@ -26,7 +26,7 @@ export class Moves {
         return list;
     }
 
-    static knight() {
+    static knight(position) {
         let list = [];
         for (let i = -2; i <= 2; i++) {
             for (let j = -2; i <= 2; i++) {
