@@ -44,6 +44,14 @@ function generatePieces() {
     pieces.push(new Piece(new Position(4, 8), "../assets/white king.png", KING));
     pieces.push(new Piece(new Position(4, 1), "../assets/black king.png", KING));
     pieces.forEach(piece => {
-        document.getElementById(`${piece.position.x} + ${piece.position.y}`).innerHTML = `<img src="${piece.img}" alt="${piece.position.x}">`;
+        let squere = document.getElementById(`${piece.position.x} + ${piece.position.y}`);
+        squere.innerHTML = `<img src="${piece.img}" alt="${piece.position.x}">`;
+        squere.addEventListener("click", function () {moves(piece);});
+    });
+}
+
+function moves(piece) {
+    piece.moves.forEach((move) => {
+        document.getElementById(`${move.x} + ${move.y}`).innerHTML += `<div class="dot"></div>`;
     });
 }

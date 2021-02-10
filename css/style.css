@@ -16,6 +16,9 @@
 #board div {
     height: 100px;
     width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #board div:hover {
@@ -26,16 +29,18 @@
 
 .white {
     background-color: #F0D9B5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .black {
     background-color: #B58863;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.dot {
+    flex-shrink: inherit;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    background-color: #956843;
 }
 
 #startGame {
@@ -43,7 +48,7 @@
     justify-content: center;
     align-items: center;
     color: black;
-    background-color: aquamarine;
+    background-color: #e94560;
     width: 200px;
     height: 50px;
     border: none;
@@ -52,7 +57,7 @@
 }
 
 body {
-    background-color: thistle;
+    background-color: #1b262c;
 }
 
 main {
