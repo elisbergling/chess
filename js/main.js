@@ -21,6 +21,8 @@ function generateSquares() {
 }
 
 let pieces = [];
+let isSelected = false;
+let selectedPiece;
 
 function generatePieces() {
     for (let i = 1; i <= 8; i++) {
@@ -44,14 +46,20 @@ function generatePieces() {
     pieces.push(new Piece(new Position(4, 8), "../assets/white king.png", KING));
     pieces.push(new Piece(new Position(4, 1), "../assets/black king.png", KING));
     pieces.forEach(piece => {
-        let squere = document.getElementById(`${piece.position.x} + ${piece.position.y}`);
-        squere.innerHTML = `<img src="${piece.img}" alt="${piece.position.x}">`;
-        squere.addEventListener("click", function () {moves(piece);});
+        let square = document.getElementById(`${piece.position.x} + ${piece.position.y}`);
+        square.innerHTML = `<img src="${piece.img}" alt="${piece.position.x}">`;
+        square.addEventListener("click", function () {moves(piece);});
     });
 }
 
 function moves(piece) {
-    piece.moves.forEach((move) => {
-        document.getElementById(`${move.x} + ${move.y}`).innerHTML += `<div class="dot"></div>`;
+    document.querySelectorAll('.dot').forEach((d) => {d.remove()}); 
+    if(!isSelected || selectedPiece != piece) {
+        piece.moves.forEach((move) => {
+            document.getElementById(`${move.x} + ${move.y}`).innerHTML += `<div class="dot"></div>`;
     });
+    }
+    selectedPiece = piece;
+    isSelected = !isSelected;
+    console.log(isSelected)
 }

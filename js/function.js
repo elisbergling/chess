@@ -1,7 +1,7 @@
-export function onBoard(positions) {
-    positions.forEach((position) => {
-        if (position.x < 1 || position.y < 1 || position.x > 8 || position.y > 8) {
-            positions = positions.filter(item => item !== position);
+export function onBoard(positions, position) {
+    positions.forEach((pos) => {
+        if (pos.x < 1 || pos.y < 1 || pos.x > 8 || pos.y > 8 || (position.x == pos.x && position.y == pos.y)) {
+            positions = positions.filter(item => item !== pos);
         }
     });
     return positions;

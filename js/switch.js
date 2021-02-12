@@ -8,7 +8,7 @@ export function switchMoves(piece, position, isWhite) {
         case QUEEN:
             return Moves.queen(position);
         case ROOK:
-            return Moves.king(position);
+            return Moves.rook(position);
         case KNIGHT:
             return Moves.knight(position);
         case BISHOP:

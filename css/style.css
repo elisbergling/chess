@@ -16,15 +16,13 @@
 #board div {
     height: 100px;
     width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
 }
 
-#board div:hover {
-    height: 90px;
-    width: 90px;
-    border: 5px solid #956843;
+#board div img {
+    justify-self: center;
+    align-self: center;
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 .white {
@@ -40,7 +38,10 @@
     width: 25%;
     height: 25%;
     border-radius: 50%;
-    background-color: #956843;
+    border: none;
+    background-color: #e94560;
+    opacity: 0.4;
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 #startGame {
