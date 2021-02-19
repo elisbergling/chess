@@ -6,6 +6,7 @@ export class Piece {
     this.position = position;
     this.img = img;
     this.piece = piece;
+    this.isWhite = isWhite;
     this.moves = switchMoves(piece, position, isWhite);
   }
 }
