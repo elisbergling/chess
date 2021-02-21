@@ -7,6 +7,9 @@ export class Piece {
     this.img = img;
     this.piece = piece;
     this.isWhite = isWhite;
-    this.moves = switchMoves(piece, position, isWhite);
+  }
+
+  moves() {
+    return switchMoves(this.piece, this.position, this.isWhite);
   }
 }

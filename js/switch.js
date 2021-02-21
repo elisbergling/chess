@@ -4,15 +4,15 @@ import { KING, QUEEN, ROOK, KNIGHT, BISHOP, PAWN } from "./strings.js";
 export function switchMoves(piece, position, isWhite) {
     switch (piece) {
         case KING:
-            return Moves.king(position);
+            return Moves.king(position, isWhite);
         case QUEEN:
-            return Moves.queen(position);
+            return Moves.queen(position, isWhite);
         case ROOK:
-            return Moves.rook(position);
+            return Moves.rook(position, isWhite);
         case KNIGHT:
-            return Moves.knight(position);
+            return Moves.knight(position, isWhite);
         case BISHOP:
-            return Moves.bishop(position);
+            return Moves.bishop(position, isWhite);
         case PAWN:
             return Moves.pawn(position, isWhite);
     }
