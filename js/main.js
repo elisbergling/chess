@@ -49,25 +49,25 @@ let status = "Nothing";
 
 function generatePieces() {
     for (let i = 1; i <= 8; i++) {
-        pieces.push(new Piece(new Position(i, 7), "../assets/white_pawn.png", PAWN, true));
-        pieces.push(new Piece(new Position(i, 2), "../assets/black_pawn.png", PAWN, false));
+        pieces.push(new Piece(new Position(i, 7), "assets/white_pawn.png", PAWN, true));
+        pieces.push(new Piece(new Position(i, 2), "assets/black_pawn.png", PAWN, false));
     }
-    pieces.push(new Piece(new Position(1, 8), "../assets/white_rook.png", ROOK, true));
-    pieces.push(new Piece(new Position(8, 8), "../assets/white_rook.png", ROOK, true));
-    pieces.push(new Piece(new Position(1, 1), "../assets/black_rook.png", ROOK, false));
-    pieces.push(new Piece(new Position(8, 1), "../assets/black_rook.png", ROOK, false));
-    pieces.push(new Piece(new Position(2, 8), "../assets/white_knight.png", KNIGHT, true));
-    pieces.push(new Piece(new Position(7, 8), "../assets/white_knight.png", KNIGHT, true));
-    pieces.push(new Piece(new Position(2, 1), "../assets/black_knight.png", KNIGHT, false));
-    pieces.push(new Piece(new Position(7, 1), "../assets/black_knight.png", KNIGHT, false));
-    pieces.push(new Piece(new Position(6, 8), "../assets/white_bishop.png", BISHOP, true));
-    pieces.push(new Piece(new Position(3, 8), "../assets/white_bishop.png", BISHOP, true));
-    pieces.push(new Piece(new Position(6, 1), "../assets/black_bishop.png", BISHOP, false));
-    pieces.push(new Piece(new Position(3, 1), "../assets/black_bishop.png", BISHOP, false));
-    pieces.push(new Piece(new Position(4, 8), "../assets/white_queen.png", QUEEN, true));
-    pieces.push(new Piece(new Position(4, 1), "../assets/black_queen.png", QUEEN, false));
-    pieces.push(new Piece(new Position(5, 8), "../assets/white_king.png", KING, true));
-    pieces.push(new Piece(new Position(5, 1), "../assets/black_king.png", KING, false));
+    pieces.push(new Piece(new Position(1, 8), "assets/white_rook.png", ROOK, true));
+    pieces.push(new Piece(new Position(8, 8), "assets/white_rook.png", ROOK, true));
+    pieces.push(new Piece(new Position(1, 1), "assets/black_rook.png", ROOK, false));
+    pieces.push(new Piece(new Position(8, 1), "assets/black_rook.png", ROOK, false));
+    pieces.push(new Piece(new Position(2, 8), "assets/white_knight.png", KNIGHT, true));
+    pieces.push(new Piece(new Position(7, 8), "assets/white_knight.png", KNIGHT, true));
+    pieces.push(new Piece(new Position(2, 1), "assets/black_knight.png", KNIGHT, false));
+    pieces.push(new Piece(new Position(7, 1), "assets/black_knight.png", KNIGHT, false));
+    pieces.push(new Piece(new Position(6, 8), "assets/white_bishop.png", BISHOP, true));
+    pieces.push(new Piece(new Position(3, 8), "assets/white_bishop.png", BISHOP, true));
+    pieces.push(new Piece(new Position(6, 1), "assets/black_bishop.png", BISHOP, false));
+    pieces.push(new Piece(new Position(3, 1), "assets/black_bishop.png", BISHOP, false));
+    pieces.push(new Piece(new Position(4, 8), "assets/white_queen.png", QUEEN, true));
+    pieces.push(new Piece(new Position(4, 1), "assets/black_queen.png", QUEEN, false));
+    pieces.push(new Piece(new Position(5, 8), "assets/white_king.png", KING, true));
+    pieces.push(new Piece(new Position(5, 1), "assets/black_king.png", KING, false));
     pieces.forEach(piece => {
         let square = document.getElementById(`${piece.position.x} + ${piece.position.y}`);
         square.innerHTML = `<img src="${piece.img}" alt="${piece.piece}">`;
@@ -177,7 +177,7 @@ function castle(position) {
     document.getElementById(`${oldRookPosition.x} + ${oldRookPosition.y}`).innerHTML = ``;
     document.getElementById(`${oldRookPosition.x} + ${oldRookPosition.y}`).onclick = function () { };
     pieces = pieces.filter(element => !(element.piece == ROOK && element.position.x == oldRookPosition.x && element.position.y == oldRookPosition.y));
-    let newPiece = new Piece(newRookPosition, selectedPiece.isWhite ? "../assets/white_rook.png" : "../assets/black_rook.png", ROOK, selectedPiece.isWhite);
+    let newPiece = new Piece(newRookPosition, selectedPiece.isWhite ? "assets/white_rook.png" : "assets/black_rook.png", ROOK, selectedPiece.isWhite);
     pieces.push(newPiece);
     let id = `piece${newRookPosition.x}${newRookPosition.y}`;
     document.getElementById(`${newRookPosition.x} + ${newRookPosition.y}`).innerHTML = `<img src="${newPiece.img}" alt="${ROOK} id="${id}">`
