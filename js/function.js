@@ -98,7 +98,6 @@ export function isCheck(testPieces) {
 }
 
 export function isStaleMate(testPieces) {
-    console.log("StaleMate");
     let whiteMoves = 0;
     let blackMoves = 0;
     let isStaleMate = false;
@@ -122,13 +121,10 @@ export function isStaleMate(testPieces) {
             isBlack = true;
         }
     }
-    console.log(whiteMoves);
-    console.log(blackMoves);
     return new CheckReturnType(isStaleMate, isWhite, isBlack);
 }
-// && !(piece.piece == PAWN && (piece.position.x == move.x + 1 || piece.position.x == move.x + 2) && piece.position.y == move.y)
+
 export function isCheckMate(testPieces) {
-    console.log("CheckMate");
     let isCheckMate = false;
     let isCheck1 = isCheck(testPieces);
     let isStaleMate1 = isStaleMate(testPieces);

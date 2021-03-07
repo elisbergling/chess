@@ -144,7 +144,7 @@ export class Moves {
             }
             if (position.y == 1) {
                 if (first) {
-                    let newPiece = new Piece(position, "../assets/white queen.png", QUEEN, true);
+                    let newPiece = new Piece(position, "../assets/white_queen.png", QUEEN, true);
                     let copiedPieces = [...pieces];
                     copiedPieces = copiedPieces.filter(piece => piece.position !== position);
                     copiedPieces.push(newPiece)
@@ -153,7 +153,7 @@ export class Moves {
                     square.innerHTML = `<img src="${newPiece.img}" alt="${newPiece.piece}">`;
                     square.onclick = function () { moves(newPiece); };
                 } else {
-                    let newPiece = new Piece(position, "../assets/white queen.png", QUEEN, true);
+                    let newPiece = new Piece(position, "../assets/white_queen.png", QUEEN, true);
                     let copiedPieces = [...newPieces];
                     copiedPieces = copiedPieces.filter(piece => piece.position !== position);
                     copiedPieces.push(newPiece)
@@ -182,7 +182,7 @@ export class Moves {
             }
             if (position.y == 8) {
                 if (first) {
-                    let newPiece = new Piece(position, "../assets/black queen.png", QUEEN, false);
+                    let newPiece = new Piece(position, "../assets/black_queen.png", QUEEN, false);
                     let copiedPieces = [...pieces];
                     copiedPieces = copiedPieces.filter(piece => piece.position !== position);
                     copiedPieces.push(newPiece)
@@ -191,7 +191,7 @@ export class Moves {
                     square.innerHTML = `<img src="${newPiece.img}" alt="${newPiece.piece}">`;
                     square.onclick = function () { moves(newPiece); };
                 } else {
-                    let newPiece = new Piece(position, "../assets/black queen.png", QUEEN, false);
+                    let newPiece = new Piece(position, "../assets/black_queen.png", QUEEN, false);
                     let copiedPieces = [...newPieces];
                     copiedPieces = copiedPieces.filter(piece => piece.position !== position);
                     copiedPieces.push(newPiece)
