@@ -1,6 +1,10 @@
-import { validMoves } from "./function.js";
+"use strict";
+import { validMoves, testPieces, newPieces, first, setNewPieces } from "./function.js";
 import { Position } from "./position.js";
-import { pieces } from "./main.js";
+import { pieces, moves, setPieces } from "./main.js";
+import { Piece } from "./piece.js";
+import { QUEEN } from "./strings.js";
+import { hasWhiteLeftRookMoved, hasWhiteRigthRookMoved, hasBlackLeftRookMoved, hasBlackRigthRookMoved, hasWhiteKingMoved, hasBlackKingMoved } from "./switch.js";
 
 export class Moves {
     static king(position, isWhite) {
@@ -10,6 +14,55 @@ export class Moves {
                 list.push(new Position(position.x + i, position.y + j));
             }
         }
+        if (!hasWhiteKingMoved && isWhite) {
+            if (!hasWhiteRigthRookMoved) {
+                let canCastle = true;
+                pieces.forEach(piece => {
+                    if (piece.position.y == position.y && piece.position.x > position.x && piece.position.x < 8) {
+                        canCastle = false;
+                    }
+                });
+                if (canCastle) {
+                    list.push(new Position(position.x + 2, position.y));
+                }
+            }
+            if (!hasWhiteLeftRookMoved) {
+                let canCastle = true;
+                pieces.forEach(piece => {
+                    if (piece.position.y == position.y && piece.position.x < position.x && piece.position.x > 1) {
+                        canCastle = false;
+                    }
+                });
+                if (canCastle) {
+                    list.push(new Position(position.x - 2, position.y));
+                }
+            }
+        }
+        if (!hasBlackKingMoved && !isWhite) {
+            if (!hasBlackRigthRookMoved) {
+                let canCastle = true;
+                pieces.forEach(piece => {
+                    if (piece.position.y == position.y && piece.position.x > position.x && piece.position.x < 8) {
+                        canCastle = false;
+                    }
+                });
+                if (canCastle) {
+                    list.push(new Position(position.x + 2, position.y));
+                }
+            }
+            if (!hasBlackLeftRookMoved) {
+                let canCastle = true;
+                pieces.forEach(piece => {
+                    if (piece.position.y == position.y && piece.position.x < position.x && piece.position.x > 1) {
+                        canCastle = false;
+                    }
+                });
+                if (canCastle) {
+                    list.push(new Position(position.x - 2, position.y));
+                }
+            }
+        }
+
         return validMoves(list, position, isWhite);
     }
 
@@ -24,7 +77,7 @@ export class Moves {
             list.push(new Position(position.x, i));
             list.push(new Position(i, position.y));
         }
-        pieces.forEach(piece => {
+        testPieces().forEach(piece => {
             list.forEach(pos => {
                 if (piece.position.x == pos.x && piece.position.y == pos.y) {
                     if (position.x > piece.position.x) {
@@ -64,7 +117,7 @@ export class Moves {
                 }
             }
         }
-        pieces.forEach(piece => {
+        testPieces().forEach(piece => {
             list.forEach(pos => {
                 if (piece.position.x == pos.x && piece.position.y == pos.y) {
                     if (position.x > piece.position.x && position.y > piece.position.y) {
@@ -89,7 +142,25 @@ export class Moves {
             if (position.y == 7) {
                 list.push(new Position(position.x, position.y - 2));
             }
-            pieces.forEach(piece => {
+            if (position.y == 1) {
+                if (first) {
+                    let newPiece = new Piece(position, "../assets/white queen.png", QUEEN, true);
+                    let copiedPieces = [...pieces];
+                    copiedPieces = copiedPieces.filter(piece => piece.position !== position);
+                    copiedPieces.push(newPiece)
+                    setPieces(copiedPieces);
+                    let square = document.getElementById(`${newPiece.position.x} + ${newPiece.position.y}`);
+                    square.innerHTML = `<img src="${newPiece.img}" alt="${newPiece.piece}">`;
+                    square.onclick = function () { moves(newPiece); };
+                } else {
+                    let newPiece = new Piece(position, "../assets/white queen.png", QUEEN, true);
+                    let copiedPieces = [...newPieces];
+                    copiedPieces = copiedPieces.filter(piece => piece.position !== position);
+                    copiedPieces.push(newPiece)
+                    setNewPieces(copiedPieces);
+                }
+            }
+            testPieces().forEach(piece => {
                 if (piece.position.y == position.y - 1 && piece.position.x == position.x - 1) {
                     list.push(new Position(position.x - 1, position.y - 1));
                 }
@@ -97,10 +168,11 @@ export class Moves {
                     list.push(new Position(position.x + 1, position.y - 1));
                 }
                 if (piece.position.y == position.y - 1 && piece.position.x == position.x) {
-                    list = list.filter(pos => !(pos.y == position.y - 1 && pos.x == position.x))
+                    list = list.filter(pos => !(pos.y == position.y - 1 && pos.x == position.x));
+                    list = list.filter(pos => !(pos.y == position.y - 2 && pos.x == position.x));
                 }
-                if(piece.position.y == position.y - 2 && piece.position.x == position.x) {
-                    list = list.filter(pos => !(pos.y == position.y - 2 && pos.x == position.x))
+                if (piece.position.y == position.y - 2 && piece.position.x == position.x) {
+                    list = list.filter(pos => !(pos.y == position.y - 2 && pos.x == position.x));
                 }
             });
         } else {
@@ -108,7 +180,25 @@ export class Moves {
             if (position.y == 2) {
                 list.push(new Position(position.x, position.y + 2));
             }
-            pieces.forEach(piece => {
+            if (position.y == 8) {
+                if (first) {
+                    let newPiece = new Piece(position, "../assets/black queen.png", QUEEN, false);
+                    let copiedPieces = [...pieces];
+                    copiedPieces = copiedPieces.filter(piece => piece.position !== position);
+                    copiedPieces.push(newPiece)
+                    setPieces(copiedPieces);
+                    let square = document.getElementById(`${newPiece.position.x} + ${newPiece.position.y}`);
+                    square.innerHTML = `<img src="${newPiece.img}" alt="${newPiece.piece}">`;
+                    square.onclick = function () { moves(newPiece); };
+                } else {
+                    let newPiece = new Piece(position, "../assets/black queen.png", QUEEN, false);
+                    let copiedPieces = [...newPieces];
+                    copiedPieces = copiedPieces.filter(piece => piece.position !== position);
+                    copiedPieces.push(newPiece)
+                    setNewPieces(copiedPieces);
+                }
+            }
+            testPieces().forEach(piece => {
                 if (piece.position.y == position.y + 1 && piece.position.x == position.x - 1) {
                     list.push(new Position(position.x - 1, position.y + 1));
                 }
@@ -116,10 +206,11 @@ export class Moves {
                     list.push(new Position(position.x + 1, position.y + 1));
                 }
                 if (piece.position.y == position.y + 1 && piece.position.x == position.x) {
-                    list = list.filter(pos => !(pos.y == position.y + 1 && pos.x == position.x))
+                    list = list.filter(pos => !(pos.y == position.y + 1 && pos.x == position.x));
+                    list = list.filter(pos => !(pos.y == position.y + 2 && pos.x == position.x));
                 }
-                if(piece.position.y == position.y + 2 && piece.position.x == position.x) {
-                    list = list.filter(pos => !(pos.y == position.y + 2 && pos.x == position.x))
+                if (piece.position.y == position.y + 2 && piece.position.x == position.x) {
+                    list = list.filter(pos => !(pos.y == position.y + 2 && pos.x == position.x));
                 }
             });
         }

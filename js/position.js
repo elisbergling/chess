@@ -1,3 +1,4 @@
+"use strict";
 export class Position {
     constructor(x, y) {
         this.x = x;

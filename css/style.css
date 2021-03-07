@@ -11,6 +11,7 @@
     border-radius: 10px;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
+    grid-area: board;
 }
 
 #board div {
@@ -35,16 +36,16 @@
 
 .dot {
     flex-shrink: inherit;
-    width: 25%;
-    height: 25%;
     border-radius: 50%;
     border: none;
     background-color: #e94560;
     opacity: 0.4;
+    width: 80px;
+    height: 80px;
     grid-area: 1 / 1 / 2 / 2;
 }
 
-#startGame {
+#game {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,6 +56,31 @@
     border: none;
     border-radius: 10px;
     text-align: center;
+    margin: 20px;
+    grid-area: game;
+    justify-self: center;
+    align-self: center;
+}
+
+#game:hover {
+    background-color: #c7233e;
+}
+
+#status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: white;
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px;
+    grid-area: status;
+    justify-self: center;
+    align-self: center;
 }
 
 body {
@@ -62,9 +88,12 @@ body {
 }
 
 main {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
+    grid-template-areas: 
+    "game status"
+    "board board";
     height: 100vh;
 }
